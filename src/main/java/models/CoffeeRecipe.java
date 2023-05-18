@@ -20,6 +20,7 @@ public class CoffeeRecipe implements Cloneable{
         this.servingSize = servingSize;
         this.categories = categories;
         this.tags = tags;
+        this.ratings = new ArrayList<>();
     }
     public String getName() {
         return name;
@@ -66,33 +67,28 @@ public class CoffeeRecipe implements Cloneable{
         this.tags = tags;
     }
 
-    public List<Integer> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(List<Integer> ratings) {
-        this.ratings = ratings;
-    }
-
     public double getImpact() {
-        return impact;
+        return calculateImpact();
     }
 
     public void addRating(int rating) {
         ratings.add(rating);
     }
-
-    public double calculateImpact(boolean useAverageRating) {
-        if (useAverageRating) {
-            int sum = 0;
-            for (int rating : ratings) {
-                sum += rating;
-            }
-            impact = sum / (double) ratings.size();
-        } else {
-            impact = ratings.size();
+    public double calculateAverageRating() {
+        if (ratings.isEmpty()) {
+            return 0.0;
         }
-        return impact;
+
+        int sum = 0;
+        for (int rating : ratings) {
+            sum += rating;
+        }
+
+        return (double) sum / ratings.size();
+    }
+
+    public double calculateImpact() {
+        return ratings.size() * calculateAverageRating();
     }
 
     @Override
@@ -107,6 +103,5 @@ public class CoffeeRecipe implements Cloneable{
             throw new RuntimeException("Cloning failed.", e);
         }
     }
-
 
 }

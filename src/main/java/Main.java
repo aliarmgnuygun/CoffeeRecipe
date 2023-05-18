@@ -1,11 +1,11 @@
 import creators.CoffeeRecipeCreator;
+import management.RecipeManagementSystem;
 import models.CoffeeRecipe;
 import strategies.SearchByCategoryStrategy;
 import strategies.SearchByIngredientsStrategy;
 import strategies.SearchByTagsStrategy;
 import strategies.SearchStrategy;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,8 +36,8 @@ public class Main {
                     searchRecipes(scanner, recipeManagementSystem);
                     break;
                 case 3:
-                    // Implement rate recipe functionality
-                    break;
+                    rateRecipe(scanner,recipeManagementSystem);
+                break;
                 case 4:
                     modifyRecipes(scanner,recipeManagementSystem);
                     break;
@@ -149,6 +149,30 @@ public class Main {
                 break;
         }
     }
+    private static void rateRecipe(Scanner scanner, RecipeManagementSystem recipeManagementSystem) {
+        System.out.print("Enter the name of the recipe you want to rate: ");
+        String recipeName = scanner.nextLine();
+
+        CoffeeRecipe recipe = recipeManagementSystem.getRecipeByName(recipeName);
+        if (recipe == null) {
+            System.out.println("Recipe not found.\n");
+            return;
+        }
+
+        System.out.println("Rate the recipe on a scale of 1-5 stars (enter a number from 1 to 5):");
+        int rating = scanner.nextInt();
+
+        // Validate the rating
+        if (rating < 1 || rating > 5) {
+            System.out.println("Invalid rating. Please enter a number from 1 to 5.\n");
+            return;
+        }
+
+        recipe.addRating(rating);
+        System.out.println("Recipe rated successfully!\n");
+    }
+
+
 }
 
 

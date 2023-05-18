@@ -1,3 +1,5 @@
+package modifiers;
+
 public class RecipeModifier {
     private Command command;
 

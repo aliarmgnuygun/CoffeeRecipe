@@ -1,3 +1,6 @@
+package management;
+
+import modifiers.RecipeModifier;
 import models.CoffeeRecipe;
 import strategies.SearchStrategy;
 
@@ -156,4 +159,6 @@ public class RecipeManagementSystem {
             System.out.println("Invalid choice. Please enter '1' or '2'.\n");
         }
     }
+
+
 }

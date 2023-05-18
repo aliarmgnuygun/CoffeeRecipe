@@ -1,3 +1,5 @@
+package modifiers;
+
 import models.CoffeeRecipe;
 
 import java.util.List;

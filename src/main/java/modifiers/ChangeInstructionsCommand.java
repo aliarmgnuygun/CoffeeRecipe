@@ -1,3 +1,5 @@
+package modifiers;
+
 import models.CoffeeRecipe;
 
 public class ChangeInstructionsCommand implements Command {
