@@ -3,7 +3,8 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoffeeRecipe {
+public class CoffeeRecipe implements Cloneable{
+    private String name;
     private List<String> ingredients;
     private String brewingInstructions;
     private int servingSize;
@@ -12,12 +13,16 @@ public class CoffeeRecipe {
     private List<Integer> ratings;
     private double impact;
 
-    public CoffeeRecipe(List<String> ingredients, String brewingInstructions, int servingSize, List<String> categories, List<String> tags) {
+    public CoffeeRecipe(String name, List<String> ingredients, String brewingInstructions, int servingSize, List<String> categories, List<String> tags) {
+        this.name = name;
         this.ingredients = ingredients;
         this.brewingInstructions = brewingInstructions;
         this.servingSize = servingSize;
         this.categories = categories;
         this.tags = tags;
+    }
+    public String getName() {
+        return name;
     }
 
     public List<String> getIngredients() {
@@ -43,6 +48,7 @@ public class CoffeeRecipe {
     public void setServingSize(int servingSize) {
         this.servingSize = servingSize;
     }
+
 
     public List<String> getCategories() {
         return categories;
@@ -88,4 +94,19 @@ public class CoffeeRecipe {
         }
         return impact;
     }
+
+    @Override
+    protected CoffeeRecipe clone() {
+        try {
+            CoffeeRecipe clonedRecipe = (CoffeeRecipe) super.clone();
+            clonedRecipe.ingredients = new ArrayList<>(this.ingredients);
+            clonedRecipe.categories = new ArrayList<>(this.categories);
+            clonedRecipe.tags = new ArrayList<>(this.tags);
+            return clonedRecipe;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Cloning failed.", e);
+        }
+    }
+
+
 }

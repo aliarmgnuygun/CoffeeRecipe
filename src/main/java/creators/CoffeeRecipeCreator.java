@@ -14,6 +14,9 @@ public class CoffeeRecipeCreator {
     }
 
     public CoffeeRecipe createCoffeeRecipe() {
+        System.out.print("Enter recipe name: ");
+        String name = scanner.nextLine();
+
         System.out.print("Enter the ingredients (comma-separated): ");
         String[] ingredientsArray = scanner.nextLine().split(",");
         List<String> ingredients = new ArrayList<>();
@@ -42,6 +45,6 @@ public class CoffeeRecipeCreator {
             tags.add(tag.trim());
         }
 
-        return new CoffeeRecipe(ingredients, brewingInstructions, servingSize, categories, tags);
+        return new CoffeeRecipe(name,ingredients, brewingInstructions, servingSize, categories, tags);
     }
 }

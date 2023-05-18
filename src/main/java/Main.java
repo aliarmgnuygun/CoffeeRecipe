@@ -1,11 +1,11 @@
 import creators.CoffeeRecipeCreator;
-import management.RecipeManagementSystem;
 import models.CoffeeRecipe;
 import strategies.SearchByCategoryStrategy;
 import strategies.SearchByIngredientsStrategy;
 import strategies.SearchByTagsStrategy;
 import strategies.SearchStrategy;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,7 +39,7 @@ public class Main {
                     // Implement rate recipe functionality
                     break;
                 case 4:
-                    // Implement modify recipe functionality
+                    modifyRecipes(scanner,recipeManagementSystem);
                     break;
                 case 0:
                     System.out.println("Exiting...");
@@ -75,6 +75,7 @@ public class Main {
         scanner.nextLine(); // Consume the newline character
 
         SearchStrategy strategy;
+
         switch (strategyChoice) {
             case 1:
                 strategy = new SearchByIngredientsStrategy();
@@ -86,8 +87,9 @@ public class Main {
                 strategy = new SearchByTagsStrategy();
                 break;
             default:
-                System.out.println("Invalid strategy choice.");
-                return;
+                System.out.println("Invalid strategy choice. Using default strategy: By Ingredients.");
+                strategy = new SearchByIngredientsStrategy(); // Set default strategy
+                break;
         }
 
         System.out.print("Enter search keyword: ");
@@ -100,6 +102,7 @@ public class Main {
         } else {
             System.out.println("\nSearch Results:");
             for (CoffeeRecipe recipe : searchResults) {
+                System.out.println("Recipe Name: " + recipe.getName());
                 System.out.println("Ingredients: " + recipe.getIngredients());
                 System.out.println("Brewing Instructions: " + recipe.getBrewingInstructions());
                 System.out.println("Serving Size: " + recipe.getServingSize());
@@ -111,6 +114,41 @@ public class Main {
         }
     }
 
+    private static void modifyRecipes(Scanner scanner, RecipeManagementSystem recipeManagementSystem) {
+        System.out.println("\n----- Modify Recipe -----");
+
+        System.out.print("Enter the recipe name: ");
+        String recipeName = scanner.nextLine();
+
+        CoffeeRecipe selectedRecipe = recipeManagementSystem.getRecipeByName(recipeName);
+
+        System.out.println("1. Ingredients");
+        System.out.println("2. Brewing Instructions");
+        System.out.println("3. Categories");
+        System.out.println("4. Tags");
+        System.out.println("Which field do you want to modify? : ");
+
+        int fieldChoice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (fieldChoice) {
+            case 1:
+                recipeManagementSystem.modifyIngredients(scanner, selectedRecipe);
+                break;
+            case 2:
+                recipeManagementSystem.modifyBrewingInstructions(scanner, selectedRecipe);
+                break;
+            case 3:
+                recipeManagementSystem.modifyCategories(scanner, selectedRecipe);
+                break;
+            case 4:
+                recipeManagementSystem.modifyTags(scanner, selectedRecipe);
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.\n");
+                break;
+        }
+    }
 }
 
 
