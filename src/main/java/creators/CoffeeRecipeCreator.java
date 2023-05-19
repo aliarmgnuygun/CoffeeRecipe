@@ -28,7 +28,7 @@ public class CoffeeRecipeCreator {
         String brewingInstructions = scanner.nextLine();
 
         System.out.print("Enter the serving size: ");
-        int servingSize = scanner.nextInt();
+        String servingSize = scanner.nextLine();
         scanner.nextLine(); // Consume the newline character
 
         System.out.print("Enter the categories (up to 3, comma-separated): ");

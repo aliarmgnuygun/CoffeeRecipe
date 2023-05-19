@@ -1,6 +1,6 @@
 package management;
 
-import modifiers.RecipeModifier;
+import modifiers.*;
 import models.CoffeeRecipe;
 import strategies.SearchStrategy;
 
@@ -46,23 +46,22 @@ public class RecipeManagementSystem {
     }
 
     public void modifyIngredients(Scanner scanner, CoffeeRecipe recipe) {
-
-        List<String> existingIngredients = recipe.getIngredients();
+        List<String> originalIngredients = new ArrayList<>(recipe.getIngredients());
+        List<String> modifiedIngredients = new ArrayList<>(recipe.getIngredients());
 
         System.out.println("Do you want to add or remove ingredients?");
         System.out.println("1. Add");
         System.out.println("2. Remove");
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
-
+        scanner.nextLine();
 
         if (choice == 1) {
             System.out.println("Enter the new ingredients (one ingredient per line, empty line to finish):");
 
             String ingredient = scanner.nextLine();
             while (!ingredient.isEmpty()) {
-                existingIngredients.add(ingredient);
+                modifiedIngredients.add(ingredient);
                 ingredient = scanner.nextLine();
             }
 
@@ -72,7 +71,7 @@ public class RecipeManagementSystem {
 
             String ingredient = scanner.nextLine();
             while (!ingredient.isEmpty()) {
-                existingIngredients.remove(ingredient);
+                modifiedIngredients.remove(ingredient);
                 ingredient = scanner.nextLine();
             }
 
@@ -80,9 +79,23 @@ public class RecipeManagementSystem {
         } else {
             System.out.println("Invalid choice. Please enter '1' or '2'.\n");
         }
+
+        System.out.println("Do you want to undo the ingredients modification? (y/n)");
+        String undoChoice = scanner.nextLine();
+
+        if (undoChoice.equalsIgnoreCase("y")) {
+
+            recipe.setIngredients(originalIngredients);
+            System.out.println("Ingredients modification undone successfully!\n");
+        } else {
+
+            recipe.setIngredients(modifiedIngredients);
+        }
     }
+
     public void modifyTags(Scanner scanner, CoffeeRecipe recipe) {
-        List<String> existingTags = recipe.getTags();
+        List<String> originalTags = new ArrayList<>(recipe.getTags());
+        List<String> modifiedTags = new ArrayList<>(recipe.getTags());
 
         System.out.println("Do you want to add or remove tags?");
         System.out.println("1. Add");
@@ -95,8 +108,8 @@ public class RecipeManagementSystem {
             System.out.println("Enter up to three new tags (one tag per line, empty line to finish):");
 
             String tag = scanner.nextLine();
-            while (!tag.isEmpty() && existingTags.size() < 3) {
-                existingTags.add(tag);
+            while (!tag.isEmpty() && modifiedTags.size() < 3) {
+                modifiedTags.add(tag);
                 tag = scanner.nextLine();
             }
 
@@ -106,7 +119,7 @@ public class RecipeManagementSystem {
 
             String tag = scanner.nextLine();
             while (!tag.isEmpty()) {
-                existingTags.remove(tag);
+                modifiedTags.remove(tag);
                 tag = scanner.nextLine();
             }
 
@@ -114,24 +127,52 @@ public class RecipeManagementSystem {
         } else {
             System.out.println("Invalid choice. Please enter '1' or '2'.\n");
         }
+
+        System.out.println("Do you want to undo the tags modification? (y/n)");
+        String undoChoice = scanner.nextLine();
+
+        if (undoChoice.equalsIgnoreCase("y")) {
+
+            recipe.setTags(originalTags);
+            System.out.println("Tags modification undone successfully!\n");
+        } else {
+
+            recipe.setTags(modifiedTags);
+        }
     }
 
+
+
     public void modifyBrewingInstructions(Scanner scanner, CoffeeRecipe recipe) {
+        String originalInstructions = recipe.getBrewingInstructions();
+
         System.out.println("Enter the new brewing instructions:");
         String modifiedInstructions = scanner.nextLine();
 
-        recipe.setBrewingInstructions(modifiedInstructions);
-        System.out.println("Brewing instructions modified successfully!\n");
+        System.out.println("Do you want to undo the brewing instructions modification? (y/n)");
+        String undoChoice = scanner.nextLine();
+
+        if (undoChoice.equalsIgnoreCase("y")) {
+
+            recipe.setBrewingInstructions(originalInstructions);
+            System.out.println("Brewing instructions modification undone successfully!\n");
+        } else {
+
+            recipe.setBrewingInstructions(modifiedInstructions);
+            System.out.println("Brewing instructions modified successfully!\n");
+        }
     }
 
+
+
+
     public void modifyCategories(Scanner scanner, CoffeeRecipe recipe) {
-        List<String> existingCategories = recipe.getCategories();
+        List<String> existingCategories = new ArrayList<>(recipe.getCategories());
 
         System.out.println("Do you want to add or remove categories?");
         System.out.println("1. Add");
         System.out.println("2. Remove");
         System.out.print("Enter your choice: ");
-
         int choice = scanner.nextInt();
         scanner.nextLine();
 
@@ -158,7 +199,19 @@ public class RecipeManagementSystem {
         } else {
             System.out.println("Invalid choice. Please enter '1' or '2'.\n");
         }
-    }
 
+        System.out.println("Do you want to undo the categories modification? (y/n)");
+        String undoChoice = scanner.nextLine();
+
+        if (undoChoice.equalsIgnoreCase("y")) {
+
+            recipe.setCategories(new ArrayList<>(existingCategories));
+            System.out.println("Categories modification undone successfully!\n");
+        } else {
+
+            recipe.setCategories(new ArrayList<>(existingCategories));
+            System.out.println("Categories modified successfully!\n");
+        }
+    }
 
 }

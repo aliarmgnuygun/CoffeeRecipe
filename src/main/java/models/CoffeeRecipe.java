@@ -7,13 +7,13 @@ public class CoffeeRecipe implements Cloneable{
     private String name;
     private List<String> ingredients;
     private String brewingInstructions;
-    private int servingSize;
+    private String servingSize;
     private List<String> categories;
     private List<String> tags;
     private List<Integer> ratings;
     private double impact;
 
-    public CoffeeRecipe(String name, List<String> ingredients, String brewingInstructions, int servingSize, List<String> categories, List<String> tags) {
+    public CoffeeRecipe(String name, List<String> ingredients, String brewingInstructions, String servingSize, List<String> categories, List<String> tags) {
         this.name = name;
         this.ingredients = ingredients;
         this.brewingInstructions = brewingInstructions;
@@ -42,11 +42,11 @@ public class CoffeeRecipe implements Cloneable{
         this.brewingInstructions = brewingInstructions;
     }
 
-    public int getServingSize() {
+    public String getServingSize() {
         return servingSize;
     }
 
-    public void setServingSize(int servingSize) {
+    public void setServingSize(String servingSize) {
         this.servingSize = servingSize;
     }
 
@@ -88,7 +88,8 @@ public class CoffeeRecipe implements Cloneable{
     }
 
     public double calculateImpact() {
-        return ratings.size() * calculateAverageRating();
+        impact =ratings.size() * calculateAverageRating();
+        return impact;
     }
 
     @Override
