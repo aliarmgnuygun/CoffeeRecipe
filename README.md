@@ -1,18 +1,12 @@
 # CoffeeRecipe
-The goal of this project is to develop an online recipe management system using Java. The system will be 
-a console-based application that allows users to create, modify, search, and rate recipes. The system will 
-implement at least three different design patterns to achieve a flexible and maintainable architecture.
-When the program is executed, main menu presents 4 options to the user as: create recipe, search recipes, 
-rate recipe, modify recipe.
+The goal of this project is to develop an online recipe management system using Java. The system will be a console-based application that allows users to create, modify, search, and rate recipes. The system will implement at least three different design patterns to achieve a flexible and maintainable architecture. When the program is executed, main menu presents 4 options to the user as: create recipe, search recipes, rate recipe, modify recipe.
+  
 1. Recipe Creation Module:
-• Accept recipe details: ingredients, cooking instructions, and serving size.
-• Provide users with the ability to choose up to three categories that the recipe belongs to (e.g. 
-appetizers, main dishes, desserts).
-• Provide users with the ability to choose up to three tags that describe the recipe (e.g. 
-vegetarian, gluten-free, spicy).
-• Do not keep the owner of the recipe. 
-• Once the user has entered all the necessary information, the user can select “Save Recipe” to 
-save the recipe to the system.
+• Accept recipe details: ingredients, cooking instructions, and serving size.  
+• Provide users with the ability to choose up to three categories that the recipe belongs to (e.g. appetizers, main dishes, desserts).  
+• Provide users with the ability to choose up to three tags that describe the recipe (e.g. vegetarian, gluten-free, spicy).  
+• Do not keep the owner of the recipe.   
+• Once the user has entered all the necessary information, the user can select “Save Recipe” to save the recipe to the system.  
 • Additionally, each recipe should have an impact property that is computed by the system 
 whenever a user provides a rating for that recipe. This impact property can be computed in 
 two ways as average rating or number of total ratings according to the choice of the user who 
