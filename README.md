@@ -1,6 +1,6 @@
 # CoffeeRecipe
-The goal of this project is to develop an online recipe management system using Java. The system will be a console-based application that allows users to create, modify, search, and rate recipes. The system will implement at least three different design patterns to achieve a flexible and maintainable architecture. When the program is executed, main menu presents 4 options to the user as: create recipe, search recipes, rate recipe, modify recipe.
-  
+The goal of this project is to develop an online recipe management system using Java. The system will be a console-based application that allows users to create, modify, search, and rate recipes. The system will implement at least three different design patterns to achieve a flexible and maintainable architecture. When the program is executed, main menu presents 4 options to the user as: create recipe, search recipes, rate recipe, modify recipe.  
+
 1. Recipe Creation Module:
 • Accept recipe details: ingredients, cooking instructions, and serving size.  
 • Provide users with the ability to choose up to three categories that the recipe belongs to (e.g. appetizers, main dishes, desserts).  
@@ -23,11 +23,11 @@ The goal of this project is to develop an online recipe management system using 
 • Allow users to rate recipes on a scale of 1-5 stars.
 
 Example usage of the program:
-• User selects "Create Recipe" option from the main menu.
-• User enters recipe details, chooses up to three categories and up to three tags.
-• User selects "Save Recipe" to save the recipe to the system.
-• User selects "Search Recipes" option from the main menu.
-• User enters a keyword to search.
-• User selects a recipe from the search results to view details.
-• User displays the impact property of the recipe by average rating.
-• User selects "Rate Recipe" to rate the recipe on a scale of 1-5 stars
+• User selects "Create Recipe" option from the main menu.  
+• User enters recipe details, chooses up to three categories and up to three tags.  
+• User selects "Save Recipe" to save the recipe to the system.  
+• User selects "Search Recipes" option from the main menu.  
+• User enters a keyword to search.  
+• User selects a recipe from the search results to view details.  
+• User displays the impact property of the recipe by average rating.  
+• User selects "Rate Recipe" to rate the recipe on a scale of 1-5 stars  
